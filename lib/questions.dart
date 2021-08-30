@@ -54,7 +54,7 @@ List<Question> Questions = [
   Question(
     text: 'هل محبة الله مشروطة (يعني لازم اعمل حاجة عشان يحبني)؟',
     answers: ['اه', 'لا'],
-    correct: [0],
+    correct: [1],
     isMultiple: false,
   ),
   Question(
