@@ -54,7 +54,7 @@ class _QuestionHolderState extends State<QuestionHolder> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 100,
+            height: 150,
             alignment: Alignment.center,
             child: Text(
               widget.question.text,
