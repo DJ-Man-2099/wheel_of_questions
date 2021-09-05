@@ -17,7 +17,7 @@ List<Question> Questions = [
     text: 'كيف يتعامل الله مع الخاطئ التائب؟',
     answers: [
       'يذكره بخطاياه',
-      'يتجاهل صلواته حتى بتوقف عن الخطية',
+      'يتجاهل صلواته حتى يتوقف عن الخطية',
       'لا يعود يذكر خطاياه'
     ],
     correct: [2],
@@ -93,4 +93,17 @@ List<Question> Questions = [
     correct: [1],
     isMultiple: false,
   ),
+  Question(
+    text: 'كمل المتتالية دي: 5-11-23-47-..-..',
+    answers: ['80-200', '90-180', '95-191'],
+    correct: [2],
+    isMultiple: false,
+  ),
+  Question(
+    text: 'مين اللي اخترع الترمومتر؟',
+    answers: ['ليوناردو دافنشي','ماركوني', 'فهرنهايت'],
+    correct: [2],
+    isMultiple: false,
+  ),
 ];
+

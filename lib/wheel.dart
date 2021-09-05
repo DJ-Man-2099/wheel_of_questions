@@ -19,15 +19,28 @@ class Wheel extends StatefulWidget {
   _WheelState createState() => _WheelState();
 }
 
-class _WheelState extends State<Wheel> {
-  StreamController<int> controller = StreamController<int>();
+class _WheelState extends State<Wheel> with SingleTickerProviderStateMixin {
+  StreamController<int> controller = StreamController<int>(); 
   late List<Map<String, dynamic>> tItems;
   var choice = 0;
+  late AnimationController width;
+    late Animation<double> animation;
+
 
   @override
   void initState() {
     super.initState();
     tItems = widget.items;
+    width = AnimationController(vsync: this, duration: Duration(milliseconds: 250));
+    animation = Tween<double>(begin: 0, end: 5.0).animate(width)
+      ..addListener(() {
+        // #enddocregion addListener
+        setState(() {
+          // The state that has changed here is the animation object’s value.
+        });
+        // #docregion addListener
+      });
+    width.repeat(reverse: true);
   }
 
   @override
@@ -57,8 +70,11 @@ class _WheelState extends State<Wheel> {
                         for (var it in tItems)
                           FortuneItem(
                             style: FortuneItemStyle(
-                              textAlign: TextAlign.center,
+                              borderColor: it['text']=='نقط ببلاش'? Colors.yellow.shade900: Colors.black,
+                              borderWidth: it['text']=='نقط ببلاش'? animation.value: 1.0,
+                              textAlign: TextAlign.start,
                               textStyle: TextStyle(
+                                color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                               ),
@@ -68,6 +84,7 @@ class _WheelState extends State<Wheel> {
                               quarterTurns: it['turns'],
                               child: Text(
                                 it['text'],
+                                textAlign: TextAlign.start,
                                 textDirection: TextDirection.rtl,
                               ),
                             ),

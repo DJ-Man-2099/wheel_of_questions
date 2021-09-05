@@ -10,15 +10,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'فقرة الاسئلة',
       home: Directionality(
         textDirection: TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('فقرة الاسئلة'),
+            title: Text('فقرة الاسئلة', style: TextStyle(fontWeight: FontWeight.bold),),
           ),
           body: Center(
             child: Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+              ),
               width: double.infinity,
               height: double.infinity,
               child: MainWidget(),
@@ -43,6 +47,7 @@ class _MainWidgetState extends State<MainWidget> {
   var isShown = false;
   var current;
   var cItems = items.toList();
+  var team = 0;
 
   void onChange(Map index) {
     current = index;
@@ -87,12 +92,6 @@ class _MainWidgetState extends State<MainWidget> {
                     if (cItems.length == 1) {
                       onChange(cItems[0]);
                     }
-                    /* else if (cItems.length == 0) {
-                      print('resetting');
-                      items.forEach((element) {
-                        cItems.add(element);
-                      });
-                    } */
                   });
                 },
                 child: Text(
@@ -170,6 +169,12 @@ class _MainWidgetState extends State<MainWidget> {
     );
   }
 
+  void onSwitch(int index){
+    setState(() {
+      team = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -186,9 +191,9 @@ class _MainWidgetState extends State<MainWidget> {
                 cItems.add(element);
               });
             });
-            print('resetting');
           },
         ),
+        //TeamSwitch(index: team, onSelect: onSwitch,),
         QuestionWidget(
           isShown: isShown,
           question: isShown ? Questions[int.parse(current['text']) - 1] : null,
